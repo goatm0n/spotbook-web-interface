@@ -2,6 +2,8 @@ import './App.css';
 import React, {Component} from 'react';
 import ModalCollection from './components/ModalCollection';
 import SpotMap from './components/SpotMap';
+import { Container, Row, Col } from 'reactstrap';
+import SpotNavBar from './components/SpotNavBar';
 
 class App extends Component {
 
@@ -24,8 +26,8 @@ class App extends Component {
       <div className="App">
         <header className="App-header"></header>
 
-        <ModalCollection onLogin={this.handleAuthToken} auth={this.state.authToken.access} />
-
+        <SpotNavBar onLogin={ this.handleAuthToken } auth={ this.state.authToken.access } />
+        
         <SpotMap />
         
 
