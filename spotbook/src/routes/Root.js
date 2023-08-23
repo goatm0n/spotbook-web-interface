@@ -1,10 +1,8 @@
-import './App.css';
 import React, {Component} from 'react';
-import SpotMap from './components/SpotMap';
-import SpotNavBar from './components/SpotNavBar';
+import SpotNavBar from '../components/SpotNavBar';
 import { Outlet } from 'react-router-dom';
 
-class App extends Component {
+class Root extends Component {
 
   constructor(props) {
     super(props);
@@ -26,8 +24,6 @@ class App extends Component {
         <header className="App-header"></header>
 
         <SpotNavBar onLogin={ this.handleAuthToken } auth={ this.state.authToken.access } />
-        
-        <SpotMap id="spotmap"/>
 
         <Outlet />
         
@@ -38,4 +34,4 @@ class App extends Component {
   
 }
 
-export default App;
+export default Root;

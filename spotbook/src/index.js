@@ -2,19 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterProvider } from 'react-router-dom';
 import ErrorPage from './routes/ErrorPage';
+import ProfilePage, { loader as profileLoader } from './routes/ProfilePage';
+import Root from './routes/Root';
+import SpotMap from './components/SpotMap';
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    errorElement: <ErrorPage />,
-  },
-  
-]);
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='/' element={ <Root /> } errorElement={ <ErrorPage /> } >
+      <Route index element={ <Navigate to={'map'}/>} />
+      <Route path='map' element={ <SpotMap />} />
+      <Route path='profile/:id' element={ <ProfilePage /> } loader={ profileLoader }/>
+
+    </Route>
+  )
+)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
