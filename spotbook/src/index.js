@@ -8,6 +8,7 @@ import ErrorPage from './routes/ErrorPage';
 import ProfilePage, { loader as profileLoader } from './routes/ProfilePage';
 import Root from './routes/Root';
 import SpotMap from './components/SpotMap';
+import ClipPage, { loader as clipLoader } from './routes/ClipPage';
 
 
 const router = createBrowserRouter(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
       <Route index element={ <Navigate to={'map'}/>} />
       <Route path='map' element={ <SpotMap />} />
       <Route path='profile/:id' element={ <ProfilePage /> } loader={ profileLoader }/>
+      <Route path='clip/:id' element={ <ClipPage />} loader={ clipLoader }/>
 
     </Route>
   )
