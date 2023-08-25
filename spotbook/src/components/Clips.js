@@ -4,6 +4,13 @@ import ClipList from "./ClipList";
 import axios from "axios";
 import { CLIPS_API_URL } from "../constants";
 
+export async function getClips(userId) {
+    const url = CLIPS_API_URL + "list-user-id/" + userId;
+    const res = await axios.get(url);
+    const clips = res.data;
+    return { clips }
+}
+
 class Clips extends Component {
     state = {
         clips: []

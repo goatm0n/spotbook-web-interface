@@ -1,5 +1,9 @@
 import axios from "axios"
 import { PROFILES_API_URL } from "../constants"
+import UserBadge from "./UserBadge";
+import { Col, Container, Row } from "reactstrap";
+import { useOutletContext } from "react-router-dom";
+import ClipFeed from "./ClipFeed";
 
 
 
@@ -21,8 +25,38 @@ export default function Profile(props) {
 
     const profile = props.profile;
     const account = props.account;
+    const clips = props.clips;
+    const context = useOutletContext();
+    const auth = context.auth;
 
     return (
-        <h3>{account.username}</h3>
+        <article className="profile">
+            <Container>
+                <Row>
+                    <Col>
+                        <UserBadge userId={ profile.user } />
+                    </Col>        
+                    <Col>
+                        <Row>
+                            <h3>{ account.username }</h3>
+                        </Row>
+                        <Row>
+                            <p>{ profile.full_name }</p>
+                        </Row>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                       <p>{ profile.bio }</p>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <ClipFeed clip_id_list={clips} auth={auth} />
+                    </Col>
+                </Row>
+            </Container>
+            
+        </article>
     )
 } 

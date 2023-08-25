@@ -11,6 +11,7 @@ import CommentSection from "./CommentSection";
 import ClipTextContent from "./ClipTextContent";
 import ClipImage from './ClipImage'
 import ClipHeader from "./ClipHeader";
+import { Component } from "react";
 
 export async function getClip(id) {
     const url = CLIPS_API_URL + "detail/" + id;
@@ -19,52 +20,83 @@ export async function getClip(id) {
     return { clip };
 }
 
-export default function Clip(props) {
+export default class Clip extends Component {
 
-    const clip = props.clip;
+    state = {
+        clip: {
+            likes: []
+        },
+    }
 
-    return (
-        <article className="clip">
-            <Container>
-                <Row>
-                    <ClipHeader user={clip.user} username={clip.username} />
-                </Row>
-                <Row>
-                    <Col>
-                        <ClipImage />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <ClipTextContent textContent={clip.textContent} />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <LikeToggleButton type="clip" id={clip.id} auth={props.auth} />
-                    </Col>
-                    <Col>
-                        <CommentButton auth={props.auth} />
-                    </Col>
-                    <Col>
-                        <ShareButton auth={props.auth} />
-                    </Col>
-                    <Col>
-                        <SaveButton auth={props.auth} />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <LikesModal name='Likes' id={clip.id} type='clip' count={clip.likes.length} />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <CommentSection />
-                    </Col>
-                </Row>
-            </Container>
-            
-        </article>
-    )
+    getClip = () => {
+        if (this.props.clip) {
+            this.setState({clip: this.props.clip})
+        } else {
+            axios.get(CLIPS_API_URL + "detail/" + this.props.clipId)
+                .then((res) => this.setState({clip: res.data}));
+        }
+        
+    }
+
+    resetState = () => {
+        this.getClip();
+    }
+
+    componentDidMount() {
+        this.resetState();
+    }
+
+
+    render() {
+        const clip = this.state.clip;
+        console.log(this.props.clipId);
+        console.log(clip);
+
+        return (
+            <article className="clip">
+                <Container>
+                    <Row>
+                        <ClipHeader user={clip.user} username={clip.username} />
+                    </Row>
+                    <Row>
+                        <Col>
+                            <ClipImage />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <ClipTextContent textContent={clip.textContent} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <LikeToggleButton type="clip" id={clip.id} auth={this.props.auth} />
+                        </Col>
+                        <Col>
+                            <CommentButton auth={this.props.auth} />
+                        </Col>
+                        <Col>
+                            <ShareButton auth={this.props.auth} />
+                        </Col>
+                        <Col>
+                            <SaveButton auth={this.props.auth} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <LikesModal name='Likes' id={clip.id} type='clip' count={clip.likes.length} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <CommentSection />
+                        </Col>
+                    </Row>
+                </Container>
+                
+            </article>
+        )
+    }
+
+    
 }

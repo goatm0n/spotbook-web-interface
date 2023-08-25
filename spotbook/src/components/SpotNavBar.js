@@ -5,7 +5,7 @@ import LoginModal from "./LoginModal";
 import EditProfileModal from "./EditProfileModal";
 import ProfilesModal from "./ProfilesModal";
 import ModalCollection from "./ModalCollection";
-import { ROOT_URL } from "../constants";
+
 import { Link } from "react-router-dom";
 
 
