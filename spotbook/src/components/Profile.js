@@ -10,6 +10,13 @@ export async function getProfile(id) {
     return { profile };
 }
 
+export async function getProfilePicture(userId) {
+    const url = PROFILES_API_URL + "profile-picture/" + userId;
+    const res =  await axios.get(url);
+    const profile_picture = res.data;
+    return { profile_picture };
+}
+
 export default function Profile(props) {
 
     const profile = props.profile;

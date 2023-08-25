@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import Clip, { getClip } from "../components/Clip";
+import { useOutletContext } from "react-router-dom";
 
 
 
@@ -13,7 +14,9 @@ export default function ClipPage(props) {
     const data = useLoaderData();
     const clip = data.clip.clip;
 
+    const auth = useOutletContext();
+
     return (
-        <Clip clip={ clip } />
+        <Clip clip={ clip } auth={ auth.auth }/>
     )
 }

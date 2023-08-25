@@ -2,6 +2,15 @@ import { CLIPS_API_URL } from "../constants";
 import axios from "axios";
 import './Clip.css';
 import { Col, Container, Row } from "reactstrap";
+import LikeToggleButton from "./LikeToggleButton";
+import CommentButton from "./CommentButton";
+import ShareButton from "./ShareButton";
+import SaveButton from "./SaveButton";
+import LikesModal from "./LikesModal";
+import CommentSection from "./CommentSection";
+import ClipTextContent from "./ClipTextContent";
+import ClipImage from './ClipImage'
+import ClipHeader from "./ClipHeader";
 
 export async function getClip(id) {
     const url = CLIPS_API_URL + "detail/" + id;
@@ -18,42 +27,40 @@ export default function Clip(props) {
         <article className="clip">
             <Container>
                 <Row>
+                    <ClipHeader user={clip.user} username={clip.username} />
+                </Row>
+                <Row>
                     <Col>
-                        <h1>{ clip.username }</h1>
+                        <ClipImage />
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="placeholder"/>
+                        <ClipTextContent textContent={clip.textContent} />
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        Like Icon
+                        <LikeToggleButton type="clip" id={clip.id} auth={props.auth} />
                     </Col>
                     <Col>
-                        Comment Icon
+                        <CommentButton auth={props.auth} />
                     </Col>
                     <Col>
-                        Share Icon
+                        <ShareButton auth={props.auth} />
                     </Col>
                     <Col>
-                        Save Icon
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        Likes
+                        <SaveButton auth={props.auth} />
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <h1>{ clip.textContent }</h1>
+                        <LikesModal name='Likes' id={clip.id} type='clip' count={clip.likes.length} />
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        Comments
+                        <CommentSection />
                     </Col>
                 </Row>
             </Container>
