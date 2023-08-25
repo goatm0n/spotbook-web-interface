@@ -27,7 +27,7 @@ class LoginForm extends Component {
 
     render () {
         return (
-            <Form onClick={this.login}>
+            <Form >
                 <FormGroup>
                     <Label for="email">Email:</Label>
                     <Input
@@ -46,7 +46,7 @@ class LoginForm extends Component {
                         value={this.defaultIfEmpty(this.state.password)}
                     />
                 </FormGroup>
-                <Button>Send</Button>
+                <Button onClick={this.login}>Send</Button>
             </Form>
         );
     }

@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer } from 'react-leaflet'
 import React, { Component } from 'react';
 import axios from 'axios';
 import { SPOTS_API_URL } from '../constants';
@@ -39,7 +39,8 @@ class SpotMap extends Component {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
 
-                {spots.map(spot => <SpotMarker spot={ spot } />)}
+               { spots.map(spot => <SpotMarker key={ spot.id } spot={ spot } />) }
+                
 
             </MapContainer>
         );
