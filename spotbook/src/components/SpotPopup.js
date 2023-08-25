@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Popup } from "react-leaflet";
 import axios from "axios";
-import { ACCOUNTS_API_URL, ROOT_URL } from "../constants";
+import { ACCOUNTS_API_URL } from "../constants";
 import { Link } from "react-router-dom";
 
 

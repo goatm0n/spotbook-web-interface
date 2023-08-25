@@ -1,10 +1,12 @@
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, Nav, NavItem, NavLink } from "reactstrap";
-
+import './SpotNavBar.css';
 import { Component } from "react";
 import LoginModal from "./LoginModal";
 import EditProfileModal from "./EditProfileModal";
 import ProfilesModal from "./ProfilesModal";
 import ModalCollection from "./ModalCollection";
+import { ROOT_URL } from "../constants";
+import { Link } from "react-router-dom";
 
 
 class SpotNavBar extends Component {
@@ -26,7 +28,11 @@ class SpotNavBar extends Component {
     render() {
         return (
             <Navbar>
-                <NavbarBrand>spotbook</NavbarBrand>
+                <Link to="../../" relative="path" className="homepage-link">
+                    <NavbarBrand>
+                        spotbook
+                    </NavbarBrand>
+                </Link>
                 <NavbarToggler onClick={ this.toggleNavbar } />
                 <Collapse isOpen={ !this.state.collapsed } navbar>
                     <Nav navbar>
