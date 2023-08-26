@@ -2,7 +2,6 @@ import UserBadge from "./UserBadge"
 import { Col } from "reactstrap"
 
 export default function ClipHeader(props) {
-    
 
     return (
         <>

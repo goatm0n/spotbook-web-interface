@@ -14,7 +14,11 @@ export default class UserBadge extends Component {
     getProfilePicture = () => {
         axios.get(PROFILES_API_URL + "profile-picture/" + this.props.userId)
             .then(res => this.setState({profile_picture: res.data.src}))
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err);
+                this.resetState()
+            });
+        
         
     }
 
@@ -28,6 +32,7 @@ export default class UserBadge extends Component {
 
     render() {
         const profile_picture = this.state.profile_picture;
+        
         return (
             <img src={ profile_picture } alt="user badge" className="profile-pic"/>
         )

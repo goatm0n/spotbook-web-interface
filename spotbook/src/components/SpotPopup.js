@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Popup } from "react-leaflet";
 import axios from "axios";
-import { ACCOUNTS_API_URL } from "../constants";
+import { ACCOUNTS_API_URL, CLIPS_API_URL, SPOTS_API_URL } from "../constants";
 import { Link } from "react-router-dom";
+import './SpotPopup.css';
+import ClipFeed from "./ClipFeed";
 
 
 class SpotPopup extends Component {
@@ -37,13 +39,17 @@ class SpotPopup extends Component {
 
         return (
             <Popup> 
-                <b>{title}</b>
+                <Link to={"../spot/" + spot.id} className="spot-link" >
+                    <b>{title}</b>    
+                </Link>
                 <br />
                 {spotType}
                 <br />
                 {description}
                 <br />
-                <Link to={ "../profile/" + userId }>{this.state.username}</Link>
+                <Link to={ "../profile/" + userId } className="profile-link">{this.state.username}</Link>
+                <br />
+                {/* <ClipFeed spotId={spot.id} /> */}
             </Popup>
         )
     }
