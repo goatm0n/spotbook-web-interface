@@ -4,6 +4,13 @@ import SpotList from "./SpotList";
 import axios from "axios";
 import { SPOTS_API_URL } from "../constants";
 
+export async function getSpots() {
+    const url = SPOTS_API_URL + "list/";
+    const res = await axios.get(url);
+    const spots = res.data;
+    return { spots };
+}
+
 class Spots extends Component {
     state = {
         spots: []

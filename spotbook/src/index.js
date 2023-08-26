@@ -10,13 +10,14 @@ import Root from './routes/Root';
 import SpotMap from './components/SpotMap';
 import ClipPage, { loader as clipLoader } from './routes/ClipPage';
 import SpotPage, { loader as spotPageLoader } from './routes/SpotPage';
+import MapPage from './routes/MapPage';
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={ <Root /> } errorElement={ <ErrorPage /> } >
       <Route index element={ <Navigate to={'map'}/>} />
-      <Route path='map' element={ <SpotMap />} />
+      <Route path='map' element={ <MapPage />} />
       <Route path='profile/:id' element={ <ProfilePage /> } loader={ profileLoader }/>
       <Route path='clip/:id' element={ <ClipPage />} loader={ clipLoader }/>
       <Route path='spot/:id' element={ <SpotPage />} loader={ spotPageLoader }/>

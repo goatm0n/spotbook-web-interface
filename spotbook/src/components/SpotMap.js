@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { SPOTS_API_URL } from '../constants';
 import SpotMarker from './SpotMarker';
+import NewSpotMarker from './NewSpotMarker';
 
 class SpotMap extends Component {
     
@@ -33,7 +34,7 @@ class SpotMap extends Component {
     render() {
         const spots = this.state.spots;
         return (
-            <MapContainer center={this.state.center} zoom={13} scrollWheelZoom={false}>
+            <MapContainer center={this.state.center} zoom={13} scrollWheelZoom={false} >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -41,6 +42,7 @@ class SpotMap extends Component {
 
                { spots.map(spot => <SpotMarker key={ spot.id } spot={ spot } />) }
                 
+                <NewSpotMarker auth={this.props.auth}/>
 
             </MapContainer>
         );
