@@ -31,7 +31,6 @@ export default class ClipFeed extends Component {
 
     render() {
         const clip_id_list = this.state.clip_id_list;
-        console.log(clip_id_list);
 
         return (
             <div className="clip-feed">

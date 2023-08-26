@@ -1,21 +1,23 @@
 import { useLoaderData, useOutletContext } from "react-router-dom";
 import { getSpotClips } from "../components/Clips"
-import ClipFeed from "../components/ClipFeed";
+import Spot, { getSpot } from "../components/Spot";
 
 
 export async function loader({ params }) {
     const clips = await getSpotClips(params.id);
-    return { clips };
+    const spot = await getSpot(params.id);
+    return { clips, spot };
 }
 
 export default function SpotPage(props) {
 
     const data = useLoaderData();
-    const clips = data.clips.clips.clip_id_list;
+    const clip_id_list = data.clips.clips.clip_id_list;
     const context = useOutletContext();
     const auth = context.auth;
+    const spot = data.spot.spot;
 
     return (
-        <ClipFeed clip_id_list={clips} auth={auth} />
+        <Spot clip_id_list={clip_id_list} auth={auth} spot={spot} />
     )
 }
