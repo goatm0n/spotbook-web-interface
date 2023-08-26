@@ -12,14 +12,15 @@ export default class UserBadge extends Component {
     }
 
     getProfilePicture = () => {
+        if (!this.props.user) {
+        }
         axios.get(PROFILES_API_URL + "profile-picture/" + this.props.userId)
             .then(res => this.setState({profile_picture: res.data.src}))
             .catch((err) => {
-                console.log(err);
-                this.resetState()
-            });
-        
-        
+                this.resetState();
+                /* ^^^This could be dangerous
+                console.log(err); */
+            });    
     }
 
     resetState = () => {

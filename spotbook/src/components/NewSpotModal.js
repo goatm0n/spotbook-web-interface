@@ -15,7 +15,7 @@ class NewSpotModal extends Component {
     };
 
     render() {    
-        console.log(this.props.auth);
+        
         return (
             <Fragment>
                 <Button

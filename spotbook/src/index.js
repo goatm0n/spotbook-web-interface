@@ -7,7 +7,6 @@ import { createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterP
 import ErrorPage from './routes/ErrorPage';
 import ProfilePage, { loader as profileLoader } from './routes/ProfilePage';
 import Root from './routes/Root';
-import SpotMap from './components/SpotMap';
 import ClipPage, { loader as clipLoader } from './routes/ClipPage';
 import SpotPage, { loader as spotPageLoader } from './routes/SpotPage';
 import MapPage from './routes/MapPage';
