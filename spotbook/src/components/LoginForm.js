@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import axios from "axios";
-import { API_URL } from "../constants";
+import { API_URL, PROFILES_API_URL } from "../constants";
 
 class LoginForm extends Component {
     state = {
@@ -19,11 +19,18 @@ class LoginForm extends Component {
 
     login = e => {
         e.preventDefault();
+        this.getUserId();
         axios.post(API_URL + "api/users/token/", this.state).then((authToken) => {  
             this.props.toggle();
             this.props.onLogin(authToken.data);
         });
     };
+
+    getUserId(email) {
+        const url = PROFILES_API_URL + "get-user-id-from-email" + this.state.email;
+        const res = axios.get(url);
+        console.log(res);
+    }
 
     render () {
         return (

@@ -10,7 +10,8 @@ class Root extends Component {
       authToken: {
         refresh: "",
         access: ""
-      }
+      },
+      userId: null,
     };
   }
 
