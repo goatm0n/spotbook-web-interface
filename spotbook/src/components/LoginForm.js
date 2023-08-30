@@ -19,18 +19,15 @@ class LoginForm extends Component {
 
     login = e => {
         e.preventDefault();
-        this.getUserId();
-        axios.post(API_URL + "api/users/token/", this.state).then((authToken) => {  
-            this.props.toggle();
-            this.props.onLogin(authToken.data);
+        const url = PROFILES_API_URL + "get-user-id-from-email/" + this.state.email;
+        axios.get(url).then((res) => {
+            const userId = res.data.userId;
+            axios.post(API_URL + "api/users/token/", this.state).then((authToken) => {  
+                this.props.toggle();
+                this.props.onLogin(authToken.data, userId);
+            });    
         });
     };
-
-    getUserId(email) {
-        const url = PROFILES_API_URL + "get-user-id-from-email" + this.state.email;
-        const res = axios.get(url);
-        console.log(res);
-    }
 
     render () {
         return (

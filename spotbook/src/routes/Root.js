@@ -15,8 +15,9 @@ class Root extends Component {
     };
   }
 
-  handleAuthToken = (authToken) => {
+  handleAuthToken = (authToken, userId) => {
     this.setState({authToken: authToken});
+    this.setState({userId: userId});
   }
 
   render() {
