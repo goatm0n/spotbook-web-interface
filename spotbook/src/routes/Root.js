@@ -27,7 +27,7 @@ class Root extends Component {
 
         <SpotNavBar onLogin={ this.handleAuthToken } auth={ this.state.authToken.access } />
 
-        <Outlet context={{auth: this.state.authToken.access}}/>
+        <Outlet context={{auth: this.state.authToken.access, userId: this.state.userId}}/>
         
 
       </div>
