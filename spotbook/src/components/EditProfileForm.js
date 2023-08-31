@@ -26,7 +26,11 @@ class EditProfileForm extends React.Component {
     };
 
     editProfile = e => {
-
+        e.preventDefault();
+        const url = PROFILES_API_URL + 'update/' + this.state.user + '/';
+        axios.post(url, this.state).then((res) => {
+            this.props.toggle();
+        })
     }
 
     render() {

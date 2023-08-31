@@ -34,7 +34,7 @@ function EditProfile({ profile, isUser }) {
     }
 
     return (
-        <EditProfileModal />
+        <EditProfileModal profile={profile} />
     )
     
 }
