@@ -24,7 +24,9 @@ class NewAccountForm extends React.Component {
     createAccount = e => {
         e.preventDefault();
         axios.post(ACCOUNTS_API_URL + "create/", this.state).then(() => {
-                this.props.resetState();
+                if (this.props.resetState) {
+                    this.props.resetState();
+                }
                 this.props.toggle();
             });
     };
@@ -32,7 +34,9 @@ class NewAccountForm extends React.Component {
     editAccount = e => {
         e.preventDefault();
         axios.put(ACCOUNTS_API_URL + "create/", this.state).then(() => {
-            this.props.resetState();
+            if (this.props.resetState) {
+                this.props.resetState();
+            }
             this.props.toggle();
         });
     };

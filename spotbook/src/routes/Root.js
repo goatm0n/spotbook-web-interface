@@ -25,7 +25,7 @@ class Root extends Component {
       <div className="App">
         <header className="App-header"></header>
 
-        <SpotNavBar onLogin={ this.handleAuthToken } auth={ this.state.authToken.access } />
+        <SpotNavBar onLogin={ this.handleAuthToken } auth={ this.state.authToken.access } userId={ this.state.userId }/>
 
         <Outlet context={{auth: this.state.authToken.access, userId: this.state.userId}}/>
         

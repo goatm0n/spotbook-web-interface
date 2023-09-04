@@ -1,13 +1,10 @@
-import { Collapse, Navbar, NavbarBrand, NavbarToggler, Nav, NavItem, NavLink } from "reactstrap";
+import { Collapse, Navbar, NavbarBrand, NavbarToggler, Nav, NavItem } from "reactstrap";
 import './SpotNavBar.css';
 import { Component } from "react";
 import LoginModal from "./LoginModal";
-import EditProfileModal from "./EditProfileModal";
-import ProfilesModal from "./ProfilesModal";
 import ModalCollection from "./ModalCollection";
-
 import { Link } from "react-router-dom";
-
+import ProfileLink from "./ProfileLink";
 
 class SpotNavBar extends Component {
 
@@ -26,6 +23,10 @@ class SpotNavBar extends Component {
     }
 
     render() {
+        var content = <LoginModal onLogin={this.props.onLogin} />
+        if (this.props.userId) {
+            var content = <ProfileLink userId={this.props.userId.userId} />
+        }
         return (
             <Navbar>
                 <Link to="../../" relative="path" className="homepage-link">
@@ -37,22 +38,13 @@ class SpotNavBar extends Component {
                 <Collapse isOpen={ !this.state.collapsed } navbar>
                     <Nav navbar>
                         <NavItem>
-                            <LoginModal onLogin={ this.props.onLogin }/>
-                        </NavItem>
-                        <NavItem>
-                            <EditProfileModal />
-                        </NavItem>
-                        <NavItem>
-                            <ProfilesModal auth={ this.props.auth } />
+                            {/* <Content userId={this.props.userId} onLogin={ this.props.onLogin } /> */}
+                            {content}
                         </NavItem>
                         <NavItem>
                             <ModalCollection onLogin={ this.props.onLogin } auth={ this.props.auth } />
                         </NavItem>
-                        <NavItem>
-                            <NavLink href="profile/">
-                                profile
-                            </NavLink>
-                        </NavItem>
+                        
                     </Nav>
                 
                 </Collapse>

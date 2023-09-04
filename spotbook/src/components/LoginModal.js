@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import LoginForm from "./LoginForm";
+import NewAccountModal from "./NewAccountModal";
 
 class LoginModal extends Component {
     state = {
@@ -33,6 +34,7 @@ class LoginModal extends Component {
                             onLogin={this.props.onLogin}
                         >
                         </LoginForm>
+                        <NewAccountModal create />
                     </ModalBody>
                 </Modal>
             </Fragment>
