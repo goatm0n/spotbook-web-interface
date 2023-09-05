@@ -7,7 +7,7 @@ export default function ProfileLink(props) {
 
     return (
         <Link to={ "../profile/" + props.userId }>
-            <UserBadge />
+            <UserBadge userId={props.userId}/>
         </Link>
     )
 }

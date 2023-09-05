@@ -2,7 +2,6 @@ import { Collapse, Navbar, NavbarBrand, NavbarToggler, Nav, NavItem } from "reac
 import './SpotNavBar.css';
 import { Component } from "react";
 import LoginModal from "./LoginModal";
-import ModalCollection from "./ModalCollection";
 import { Link } from "react-router-dom";
 import ProfileLink from "./ProfileLink";
 
@@ -25,7 +24,8 @@ class SpotNavBar extends Component {
     render() {
         var content = <LoginModal onLogin={this.props.onLogin} />
         if (this.props.userId) {
-            var content = <ProfileLink userId={this.props.userId.userId} />
+            console.log(this.props.userId);
+            var content = <ProfileLink userId={this.props.userId} />
         }
         return (
             <Navbar>
@@ -38,13 +38,8 @@ class SpotNavBar extends Component {
                 <Collapse isOpen={ !this.state.collapsed } navbar>
                     <Nav navbar>
                         <NavItem>
-                            {/* <Content userId={this.props.userId} onLogin={ this.props.onLogin } /> */}
                             {content}
-                        </NavItem>
-                        <NavItem>
-                            <ModalCollection onLogin={ this.props.onLogin } auth={ this.props.auth } />
-                        </NavItem>
-                        
+                        </NavItem>                        
                     </Nav>
                 
                 </Collapse>
