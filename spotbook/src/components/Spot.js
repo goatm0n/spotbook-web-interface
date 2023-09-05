@@ -4,6 +4,7 @@ import { SPOTS_API_URL } from "../constants";
 import axios from "axios";
 import FollowToggleButton from "./FollowToggleButton";
 import LikeToggleButton from "./LikeToggleButton";
+import NewClipModal from "./NewClipModal";
 
 export async function getSpot(spotId) {
     const url = SPOTS_API_URL + "detail/" + spotId;
@@ -42,6 +43,9 @@ export default function Spot(props) {
                 <Row>
                     <Col>
                        <p>{ spot.properties.description }</p>
+                    </Col>
+                    <Col>
+                        <NewClipModal accessToken={props.auth} spot={spot.id}/>
                     </Col>
                 </Row>
                 <Row>

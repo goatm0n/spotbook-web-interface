@@ -81,24 +81,6 @@ class NewSpotForm extends Component {
                     />
                 </FormGroup>
                 <FormGroup>
-                    <Label for="lat">Latitude:</Label>
-                    <Input
-                        type="text"
-                        name="lat"
-                        onChange={this.onChange}
-                        value={this.defaultIfEmpty(this.state.lat)}
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <Label for="lon">Longitude:</Label>
-                    <Input
-                        type="text"
-                        name="lon"
-                        onChange={this.onChange}
-                        value={this.defaultIfEmpty(this.state.lon)}
-                    />
-                </FormGroup>
-                <FormGroup>
                     <Label for="spotType">SpotType:</Label>
                     <Input 
                         type="select"

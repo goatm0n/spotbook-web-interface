@@ -46,9 +46,10 @@ class NewClipForm extends Component {
     };
 
     render () {
+
         return (
-            <Form onClick={this.create}>
-                <FormGroup>
+            <Form>
+                {/* <FormGroup>
                     <Label for="spot">Spot:</Label>
                     <Input
                         type="text"
@@ -56,7 +57,7 @@ class NewClipForm extends Component {
                         onChange={this.onChange}
                         value={this.defaultIfEmpty(this.state.spot)}
                     />
-                </FormGroup>
+                </FormGroup> */}
                 <FormGroup>
                     <Label for="textContent">TextContent:</Label>
                     <Input
@@ -66,7 +67,7 @@ class NewClipForm extends Component {
                         value={this.defaultIfEmpty(this.state.textContent)}
                     />
                 </FormGroup>
-                <Button>Send</Button>
+                <Button onClick={this.create}>Send</Button>
             </Form>
         );
     }

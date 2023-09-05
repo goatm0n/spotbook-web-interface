@@ -24,7 +24,6 @@ class SpotNavBar extends Component {
     render() {
         var content = <LoginModal onLogin={this.props.onLogin} />
         if (this.props.userId) {
-            console.log(this.props.userId);
             var content = <ProfileLink userId={this.props.userId} />
         }
         return (
