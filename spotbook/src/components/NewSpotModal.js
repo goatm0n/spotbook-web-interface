@@ -15,6 +15,7 @@ class NewSpotModal extends Component {
     };
 
     render() {    
+        
         return (
             <Fragment>
                 <Button
@@ -32,6 +33,7 @@ class NewSpotModal extends Component {
                             toggle={this.toggle}
                             spot={this.props.spot}
                             auth={this.props.auth}
+                            position={this.props.position}
                         >
                         </NewSpotForm>
                     </ModalBody>

@@ -12,10 +12,19 @@ export default class UserBadge extends Component {
     }
 
     getProfilePicture = () => {
-        axios.get(PROFILES_API_URL + "profile-picture/" + this.props.userId)
+        if (this.props.userId === undefined) {
+            axios.get(PROFILES_API_URL + "default-profile-picture/")
             .then(res => this.setState({profile_picture: res.data.src}))
-            .catch((err) => console.log(err));
-        
+            .catch((err) => {
+                console.log(err); 
+            });  
+        } else {
+            axios.get(PROFILES_API_URL + "profile-picture/" + this.props.userId)
+            .then(res => this.setState({profile_picture: res.data.src}))
+            .catch((err) => {
+                console.log(err); 
+            });    
+        }
     }
 
     resetState = () => {
@@ -28,6 +37,7 @@ export default class UserBadge extends Component {
 
     render() {
         const profile_picture = this.state.profile_picture;
+        
         return (
             <img src={ profile_picture } alt="user badge" className="profile-pic"/>
         )

@@ -11,6 +11,13 @@ export async function getClips(userId) {
     return { clips }
 }
 
+export async function getSpotClips(spotId) {
+    const url = CLIPS_API_URL + "list-spot/" + spotId;
+    const res = await axios.get(url);
+    const clips = res.data;
+    return { clips }
+}
+
 class Clips extends Component {
     state = {
         clips: []

@@ -4,8 +4,8 @@ import UserBadge from "./UserBadge";
 import { Col, Container, Row } from "reactstrap";
 import { useOutletContext } from "react-router-dom";
 import ClipFeed from "./ClipFeed";
-
-
+import { useState } from "react";
+import EditProfileModal from "./EditProfileModal";
 
 export async function getProfile(id) {
     const url = PROFILES_API_URL + "user-id-detail/" + id;
@@ -21,6 +21,24 @@ export async function getProfilePicture(userId) {
     return { profile_picture };
 }
 
+export async function getUserId() {
+    const url = PROFILES_API_URL + "user-id/";
+    const res = await axios.get(url);
+    const user_id = res.data;
+    return { user_id };
+}
+
+function EditProfile({ profile, isUser }) {
+    if (!isUser) {
+        return null;
+    }
+
+    return (
+        <EditProfileModal profile={profile} />
+    )
+    
+}
+
 export default function Profile(props) {
 
     const profile = props.profile;
@@ -28,6 +46,13 @@ export default function Profile(props) {
     const clips = props.clips;
     const context = useOutletContext();
     const auth = context.auth;
+    const userId = context.userId;
+
+    var profileIsUser = false; 
+    if (userId === profile.user) {
+        var profileIsUser = true;
+    }
+    
 
     return (
         <article className="profile">
@@ -48,6 +73,11 @@ export default function Profile(props) {
                 <Row>
                     <Col>
                        <p>{ profile.bio }</p>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <EditProfile profile={profile} isUser={profileIsUser} />
                     </Col>
                 </Row>
                 <Row>

@@ -10,12 +10,14 @@ class Root extends Component {
       authToken: {
         refresh: "",
         access: ""
-      }
+      },
+      userId: null,
     };
   }
 
-  handleAuthToken = (authToken) => {
+  handleAuthToken = (authToken, userId) => {
     this.setState({authToken: authToken});
+    this.setState({userId: userId});
   }
 
   render() {
@@ -23,9 +25,9 @@ class Root extends Component {
       <div className="App">
         <header className="App-header"></header>
 
-        <SpotNavBar onLogin={ this.handleAuthToken } auth={ this.state.authToken.access } />
+        <SpotNavBar onLogin={ this.handleAuthToken } auth={ this.state.authToken.access } userId={ this.state.userId }/>
 
-        <Outlet context={{auth: this.state.authToken.access}}/>
+        <Outlet context={{auth: this.state.authToken.access, userId: this.state.userId}}/>
         
 
       </div>

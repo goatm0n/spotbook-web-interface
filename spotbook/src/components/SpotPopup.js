@@ -3,6 +3,8 @@ import { Popup } from "react-leaflet";
 import axios from "axios";
 import { ACCOUNTS_API_URL } from "../constants";
 import { Link } from "react-router-dom";
+import './SpotPopup.css';
+
 
 
 class SpotPopup extends Component {
@@ -37,13 +39,16 @@ class SpotPopup extends Component {
 
         return (
             <Popup> 
-                <b>{title}</b>
+                <Link to={"../spot/" + spot.id} className="spot-link" >
+                    <b>{title}</b>    
+                </Link>
                 <br />
                 {spotType}
                 <br />
                 {description}
                 <br />
-                <Link to={ "../profile/" + userId }>{this.state.username}</Link>
+                <Link to={ "../profile/" + userId } className="profile-link">{this.state.username}</Link>
+                <br />
             </Popup>
         )
     }

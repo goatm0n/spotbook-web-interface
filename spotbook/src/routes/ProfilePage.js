@@ -7,6 +7,7 @@ export async function loader({ params }) {
     const profile = await getProfile(params.id);
     const account = await getAccount(params.id);
     const clips = await getClips(params.id);
+
     return { profile, account, clips };
 }
 

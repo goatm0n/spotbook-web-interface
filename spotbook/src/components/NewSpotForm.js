@@ -17,7 +17,11 @@ class NewSpotForm extends Component {
         if (this.props.auth) {
             const accessString = this.props.auth;
             const auth = "Bearer " + accessString;
-            this.setState({auth})
+            this.setState({auth});
+        }
+        if (this.props.position) {
+            this.setState({lat: this.props.position.lat});
+            this.setState({lon: this.props.position.lng});
         }
     }
 
@@ -33,11 +37,12 @@ class NewSpotForm extends Component {
         e.preventDefault();
         const lon = parseFloat(this.state.lon);
         const lat = parseFloat(this.state.lat);
+        
         axios({
             method: 'post',
             url: SPOTS_API_URL + "create/",
             headers: {
-                Authorization: this.state.auth
+                Authorization: this.state.auth,
             },
             data: {
                 type: "Feature",
@@ -56,7 +61,7 @@ class NewSpotForm extends Component {
 
     render() {
         return (
-            <Form onClick={this.create}>
+            <Form>
                 <FormGroup>
                     <Label for="title">Title:</Label>
                     <Input
@@ -104,7 +109,7 @@ class NewSpotForm extends Component {
                         <option value={"Skatepark"}>Skatepark</option>
                     </Input>
                 </FormGroup>
-                <Button>Send</Button>
+                <Button onClick={this.create}>Send</Button>
             </Form>
         );
     };

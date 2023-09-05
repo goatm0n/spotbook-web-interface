@@ -49,8 +49,6 @@ export default class Clip extends Component {
 
     render() {
         const clip = this.state.clip;
-        console.log(this.props.clipId);
-        console.log(clip);
 
         return (
             <article className="clip">
