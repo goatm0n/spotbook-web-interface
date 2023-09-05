@@ -49,15 +49,6 @@ class NewClipForm extends Component {
 
         return (
             <Form>
-                {/* <FormGroup>
-                    <Label for="spot">Spot:</Label>
-                    <Input
-                        type="text"
-                        name="spot"
-                        onChange={this.onChange}
-                        value={this.defaultIfEmpty(this.state.spot)}
-                    />
-                </FormGroup> */}
                 <FormGroup>
                     <Label for="textContent">TextContent:</Label>
                     <Input

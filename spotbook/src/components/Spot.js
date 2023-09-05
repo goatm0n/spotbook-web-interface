@@ -45,7 +45,7 @@ export default function Spot(props) {
                        <p>{ spot.properties.description }</p>
                     </Col>
                     <Col>
-                        <NewClipModal accessToken={props.auth} spot={spot.id}/>
+                        <NewClipModal accessToken={auth} spot={spot.id}/>
                     </Col>
                 </Row>
                 <Row>

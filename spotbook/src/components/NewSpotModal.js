@@ -14,6 +14,10 @@ class NewSpotModal extends Component {
         }));
     };
 
+    loginAlert = () => {
+        alert("Login");
+    }
+
     render() {    
         
         return (
@@ -21,7 +25,7 @@ class NewSpotModal extends Component {
                 <Button
                     color="primary"
                     className="float-right"
-                    onClick={this.toggle}
+                    onClick={this.props.auth ? this.toggle : this.loginAlert}
                     style={{ minWidth: "200px" }}
                 >
                     Create Spot

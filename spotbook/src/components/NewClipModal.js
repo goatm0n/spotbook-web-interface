@@ -14,13 +14,17 @@ class NewClipModal extends Component {
         }));
     };
 
+    loginAlert = () => {
+        alert("Login");
+    }
+
     render() {    
         return (
             <Fragment>
                 <Button
                     color="primary"
                     className="float-right"
-                    onClick={this.toggle}
+                    onClick={this.props.accessToken ? this.toggle : this.loginAlert}
                     style={{ minWidth: "200px" }}
                 >
                     Create Clip
