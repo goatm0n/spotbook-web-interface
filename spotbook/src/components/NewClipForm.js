@@ -8,6 +8,7 @@ class NewClipForm extends Component {
         textContent: "",
         spot: "",
         auth: "",
+        image: null,
     };
 
     componentDidMount() {
@@ -26,6 +27,10 @@ class NewClipForm extends Component {
         this.setState({ [e.target.name]: e.target.value });
     };
 
+    handleImageChange = e => {
+        this.setState({image: e.target.files[0]});
+    };
+
     defaultIfEmpty = value => {
         return value === "" ? "" : value;
     };
@@ -36,11 +41,13 @@ class NewClipForm extends Component {
             method: 'post',
             url: CLIPS_API_URL + "create/",
             headers: {
-                Authorization: this.state.auth
+                Authorization: this.state.auth,
+                'Content-Type': 'multipart/form-data',
             },
             data: {
                 spot: this.state.spot,
-                textContent: this.state.textContent
+                textContent: this.state.textContent,
+                image: this.state.image,
             }
         });
     };
@@ -56,6 +63,14 @@ class NewClipForm extends Component {
                         name="textContent"
                         onChange={this.onChange}
                         value={this.defaultIfEmpty(this.state.textContent)}
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Label for="image">Image</Label>
+                    <Input
+                        type="file"
+                        name="image"
+                        onChange={this.handleImageChange}
                     />
                 </FormGroup>
                 <Button onClick={this.create}>Send</Button>

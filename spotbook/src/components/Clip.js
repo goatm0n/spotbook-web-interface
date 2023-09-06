@@ -58,7 +58,7 @@ export default class Clip extends Component {
                     </Row>
                     <Row>
                         <Col>
-                            <ClipImage />
+                            <ClipImage src={clip.image}/>
                         </Col>
                     </Row>
                     <Row>
