@@ -3,17 +3,41 @@ import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import axios from "axios";
 import { PROFILES_API_URL } from "../constants";
 
+function extractFilename(path) {
+    if (path.substr(0, 12) === "C:\\fakepath\\")
+      return path.substr(12); // modern browser
+    var x;
+    x = path.lastIndexOf('/');
+    if (x >= 0) // Unix-based path
+      return path.substr(x+1);
+    x = path.lastIndexOf('\\');
+    if (x >= 0) // Windows-based path
+      return path.substr(x+1);
+    return path; // just the filename
+}
+
 class EditProfileForm extends React.Component {
     state = {
         user: "",
         full_name: "",
         bio: "",
+        profile_picture: null,
     };
 
     componentDidMount() {
         if (this.props.profile) {
-            const {user, full_name, bio} = this.props.profile;
-            this.setState({user, full_name, bio});
+            const {user, full_name, bio, profile_picture} = this.props.profile;
+            if (!full_name) {
+                this.setState({full_name: ""})
+            } else {
+                this.setState({full_name})
+            }
+            if (!bio) {
+                this.setState({bio: ""})
+            } else {
+                this.setState({bio})
+            }
+            this.setState({user, profile_picture});
         }
     }
 
@@ -25,13 +49,28 @@ class EditProfileForm extends React.Component {
         return value === "" ? "" : value;
     };
 
+    handleProfilePictureChange = e => {
+        this.setState({profile_picture: e.target.files[0]});
+    };
+
     editProfile = e => {
         e.preventDefault();
         const url = PROFILES_API_URL + 'update/' + this.state.user + '/';
-        axios.post(url, this.state).then((res) => {
+        const file_name = extractFilename(this.state.profile_picture.name);
+        let form_data = new FormData();
+        form_data.append('user', this.state.user);
+        form_data.append('full_name', this.state.full_name);
+        form_data.append('bio', this.state.bio);
+        form_data.append('profile_picture', this.state.profile_picture, file_name);
+
+        axios.post(url, form_data, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then((res) => {
             this.props.toggle();
-        })
-    }
+        }).catch(err => console.log(err))
+    };
 
     render() {
         return (
@@ -52,6 +91,15 @@ class EditProfileForm extends React.Component {
                         name="bio"
                         onChange={this.onChange}
                         value={this.defaultIfEmpty(this.state.bio)}
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Label for="profile_picture">Profile picture</Label>
+                    <Input
+                        type="file"
+                        name="profile_picture"
+                        onChange={this.handleProfilePictureChange}
+                        /* value={this.defaultIfEmpty(this.state.profile_picture)} */
                     />
                 </FormGroup>
                 <Button>Send</Button>
