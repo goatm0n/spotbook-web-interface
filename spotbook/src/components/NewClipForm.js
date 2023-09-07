@@ -49,7 +49,7 @@ class NewClipForm extends Component {
                 textContent: this.state.textContent,
                 image: this.state.image,
             }
-        });
+        }).then((res) => {this.props.toggle()}).catch((err) => {console.log(err)});
     };
 
     render () {
@@ -71,6 +71,7 @@ class NewClipForm extends Component {
                         type="file"
                         name="image"
                         onChange={this.handleImageChange}
+                        accept="image/png, image/jpeg"
                     />
                 </FormGroup>
                 <Button onClick={this.create}>Send</Button>

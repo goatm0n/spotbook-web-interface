@@ -59,7 +59,7 @@ export default function Profile(props) {
             <Container>
                 <Row>
                     <Col>
-                        <UserBadge userId={ profile.user } />
+                        <UserBadge profile_picture={ profile.profile_picture } />
                     </Col>        
                     <Col>
                         <Row>

@@ -54,7 +54,7 @@ export default class Clip extends Component {
             <article className="clip">
                 <Container>
                     <Row>
-                        <ClipHeader user={clip.user} username={clip.username} />
+                        <ClipHeader user={clip.user} username={clip.username} profile_picture={clip.profile_picture}/>
                     </Row>
                     <Row>
                         <Col>
