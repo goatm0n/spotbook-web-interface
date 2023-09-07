@@ -56,7 +56,10 @@ class LikeToggleButton extends Component {
             headers: {
                 Authorization: auth
             }
-        });
+        }).then((res) => {
+            console.log(res.status);
+        }).catch((err) => {console.log(err)});
+        
         let newLikedState = !this.state.liked;
         this.setState({liked: newLikedState});
     }

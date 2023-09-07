@@ -44,12 +44,12 @@ export default function Profile(props) {
     const profile = props.profile;
     const account = props.account;
     const clips = props.clips;
-    const context = useOutletContext();
-    const auth = context.auth;
-    const userId = context.userId;
+    /* const context = useOutletContext();
+    const userId = context.userId; */
 
+    const auth = props.auth;
     var profileIsUser = false; 
-    if (userId === profile.user) {
+    if (props.userId === profile.user) {
         var profileIsUser = true;
     }
     

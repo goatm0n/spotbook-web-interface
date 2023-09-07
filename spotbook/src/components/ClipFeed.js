@@ -31,13 +31,14 @@ export default class ClipFeed extends Component {
 
     render() {
         const clip_id_list = this.state.clip_id_list;
+        const auth = this.props.auth;
 
         return (
             <div className="clip-feed">
                 <ul>
                     {
                         clip_id_list.map(function(clipId, index) {
-                            return <Clip clipId={clipId} key={index} />
+                            return <Clip clipId={clipId} key={index} auth={auth}/>
                         })
                     }
                 </ul>
