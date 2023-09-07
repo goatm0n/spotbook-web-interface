@@ -4,7 +4,6 @@ import './Clip.css';
 import { Col, Container, Row } from "reactstrap";
 import LikeToggleButton from "./LikeToggleButton";
 import CommentButton from "./CommentButton";
-import ShareButton from "./ShareButton";
 import SaveButton from "./SaveButton";
 import LikesModal from "./LikesModal";
 import CommentSection from "./CommentSection";
@@ -12,6 +11,7 @@ import ClipTextContent from "./ClipTextContent";
 import ClipImage from './ClipImage'
 import ClipHeader from "./ClipHeader";
 import { Component } from "react";
+import ShareModal from "./ShareModal";
 
 export async function getClip(id) {
     const url = CLIPS_API_URL + "detail/" + id;
@@ -46,7 +46,6 @@ export default class Clip extends Component {
         this.resetState();
     }
 
-
     render() {
         const clip = this.state.clip;
 
@@ -74,7 +73,7 @@ export default class Clip extends Component {
                             <CommentButton auth={this.props.auth} />
                         </Col>
                         <Col>
-                            <ShareButton auth={this.props.auth} />
+                            <ShareModal auth={this.props.auth} clipId={clip.id}/>
                         </Col>
                         <Col>
                             <SaveButton auth={this.props.auth} />
