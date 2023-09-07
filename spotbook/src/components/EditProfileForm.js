@@ -56,12 +56,15 @@ class EditProfileForm extends React.Component {
     editProfile = e => {
         e.preventDefault();
         const url = PROFILES_API_URL + 'update/' + this.state.user + '/';
-        const file_name = extractFilename(this.state.profile_picture.name);
         let form_data = new FormData();
         form_data.append('user', this.state.user);
         form_data.append('full_name', this.state.full_name);
         form_data.append('bio', this.state.bio);
-        form_data.append('profile_picture', this.state.profile_picture, file_name);
+        if (this.state.profile_picture.name !== undefined) {
+            const file_name = extractFilename(this.state.profile_picture.name);
+            form_data.append('profile_picture', this.state.profile_picture, file_name);
+        }
+        
 
         axios.post(url, form_data, {
             headers: {
@@ -99,7 +102,7 @@ class EditProfileForm extends React.Component {
                         type="file"
                         name="profile_picture"
                         onChange={this.handleProfilePictureChange}
-                        /* value={this.defaultIfEmpty(this.state.profile_picture)} */
+                        value={this.defaultIfEmpty("")}
                     />
                 </FormGroup>
                 <Button>Send</Button>
