@@ -8,11 +8,11 @@ import { CLIPS_API_URL } from "../constants";
 
 class Likes extends Component {
     state = {
-        accounts: []
+        accounts: [],
     };
 
-    componentDidMount() {
-        this.resetState();
+    componentDidMount() { 
+       this.resetState();
     }
 
     getLikes = () => {

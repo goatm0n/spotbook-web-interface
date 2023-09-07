@@ -6,16 +6,12 @@ class LikesModal extends Component {
     state = {
         modal: false,
         name: "Likes",
-        id: "",
         type: "",
     };
 
     componentDidMount() {
         if (this.props.name) {
             this.setState({name: this.props.name})
-        }
-        if (this.props.id) {
-            this.setState({id: this.props.id});
         }
         if (this.props.type) {
             this.setState({type: this.props.type});
@@ -35,6 +31,8 @@ class LikesModal extends Component {
             buttonText += ": " + this.props.count;
         } 
 
+        const id = this.props.id;
+
         return (
             <Fragment>
                 <Button
@@ -48,7 +46,7 @@ class LikesModal extends Component {
                     <ModalHeader toggle={this.toggle}>{this.state.name}</ModalHeader>
                     <ModalBody>
                         <Likes 
-                            id={this.state.id} 
+                            id={id} 
                             type={this.state.type}
                         />
                     </ModalBody>

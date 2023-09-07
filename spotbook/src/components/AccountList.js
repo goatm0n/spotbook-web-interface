@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Table } from "reactstrap";
 import NewAccountModal from "./NewAccountModal";
+import UserBadge from "./UserBadge";
+import ProfileLink from "./ProfileLink";
 
 
 class AccountList extends Component {
@@ -28,11 +30,7 @@ class AccountList extends Component {
                                 <td>{account.username}</td>
                                 <td>{account.email}</td>
                                 <td align="center">
-                                    <NewAccountModal
-                                        create={false}
-                                        account={account}
-                                        resetState={this.props.resetState}
-                                    />
+                                    <ProfileLink userId={account.id}/>
                                     &nbsp;&nbsp;
                                 </td>
                             </tr>
