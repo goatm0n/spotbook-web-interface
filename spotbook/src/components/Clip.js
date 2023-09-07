@@ -69,15 +69,15 @@ export default class Clip extends Component {
                         <Col>
                             <LikeToggleButton type="clip" id={clip.id} auth={this.props.auth} />
                         </Col>
-                        <Col>
+                        {/* <Col>
                             <CommentButton auth={this.props.auth} />
-                        </Col>
+                        </Col> */}
                         <Col>
                             <ShareModal auth={this.props.auth} clipId={clip.id}/>
                         </Col>
-                        <Col>
+                        {/* <Col>
                             <SaveButton auth={this.props.auth} />
-                        </Col>
+                        </Col> */}
                     </Row>
                     <Row>
                         <Col>
