@@ -4,6 +4,7 @@ import { Component } from "react";
 import LoginModal from "./LoginModal";
 import { Link } from "react-router-dom";
 import ProfileLink from "./ProfileLink";
+import LogoutButton from "./LogoutButton";
 
 class SpotNavBar extends Component {
 
@@ -24,7 +25,11 @@ class SpotNavBar extends Component {
     render() {
         var content = <LoginModal onLogin={this.props.onLogin} />
         if (this.props.userId) {
-            var content = <ProfileLink userId={this.props.userId} />
+            var content = <div>
+                <ProfileLink userId={this.props.userId} />
+                <LogoutButton onLogout={this.props.onLogout}/>
+            </div>
+
         }
         return (
             <Navbar>
